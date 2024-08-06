@@ -26,28 +26,28 @@ const X86FalseSharingRange = 128
 // in addition to the cpuid feature bit being set.
 // The struct is padded to avoid false sharing.
 type x86 struct {
-	_            [X86FalseSharingRange]byte
+	_             [X86FalseSharingRange]byte
 	HasCMPXCHG16B bool
-	HasAES       bool
-	HasADX       bool
-	HasAVX       bool
-	HasAVX2      bool
-	HasAVX512F   bool
-	HasAVX512DQ  bool
-	HasAVX512BW  bool
-	HasAVX512VL  bool
-	HasBMI1      bool
-	HasBMI2      bool
-	HasERMS      bool
-	HasFMA       bool
-	HasOSXSAVE   bool
-	HasPCLMULQDQ bool
-	HasPOPCNT    bool
-	HasSSE2      bool
-	HasSSE3      bool
-	HasSSSE3     bool
-	HasSSE41     bool
-	HasSSE42     bool
+	HasAES        bool
+	HasADX        bool
+	HasAVX        bool
+	HasAVX2       bool
+	HasAVX512F    bool
+	HasAVX512DQ   bool
+	HasAVX512BW   bool
+	HasAVX512VL   bool
+	HasBMI1       bool
+	HasBMI2       bool
+	HasERMS       bool
+	HasFMA        bool
+	HasOSXSAVE    bool
+	HasPCLMULQDQ  bool
+	HasPOPCNT     bool
+	HasSSE2       bool
+	HasSSE3       bool
+	HasSSSE3      bool
+	HasSSE41      bool
+	HasSSE42      bool
 	// The invariant TSC will run at a constant rate in all ACPI P-, C-, and T-states.
 	// This is the architectural behavior moving forward. On processors with
 	// invariant TSC support, the OS may use the TSC for wall clock timer services (instead of ACPI or HPET timers).
@@ -159,6 +159,29 @@ type s390x struct {
 	HasSHA512       bool // K{I,L}MD-SHA-512 functions
 	HasVX           bool // vector facility. Note: the runtime sets this when it processes auxv records.
 	_               [CacheLineSize]byte
+}
+
+var Loong64 loong64
+
+type loong64 struct {
+	_           [CacheLineSize]byte
+	HasLAM      bool
+	HasUAL      bool
+	HasFPU      bool
+	HasLSX      bool
+	HasLASX     bool
+	HasCRC32    bool
+	HasCOMPLEX  bool
+	HasCRYPTO   bool
+	HasLVZ      bool
+	HasLBT_X86  bool
+	HasLBT_ARM  bool
+	HasLBT_MIPS bool
+	HasPTW      bool
+
+	PRID uint32 // Processor Identity
+
+	_ [CacheLineSize]byte
 }
 
 // initialize examines the processor and sets the relevant variables above.
