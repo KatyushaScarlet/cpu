@@ -5,8 +5,8 @@
 // +build loong64
 
 // func cpucfg() (uint32, uint32)
-TEXT ·cpucfg(SB), NOSPLIT, $0-16
-    MOVL R1, index+0(FP)
+TEXT ·cpucfg(SB), 4, $0-8
+    MOVWU R1, index+0(FP)
     CPUCFG	R2, R1
-    MOVL R2, eax+8(FP)
+    MOVWU R2, eax+8(FP)
     RET
