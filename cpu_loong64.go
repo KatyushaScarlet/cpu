@@ -70,7 +70,7 @@ func doinit() {
 	}
 }
 
-func isSet(word, bit) bool {
+func isSet(word uint32, bit uint32) bool {
 	return cpucfg(word)&bit != 0
 }
 
