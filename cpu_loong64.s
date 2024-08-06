@@ -7,6 +7,6 @@
 // func cpucfg() (uint32, uint32)
 TEXT ·cpucfg(SB), 4, $0-8
     MOVWU R1, index+0(FP)
-    CPUCFG	R2, R1
-    MOVWU R2, eax+8(FP)
+    CPUCFG R2, R1
+    MOVWU R2, index+4(FP)
     RET
